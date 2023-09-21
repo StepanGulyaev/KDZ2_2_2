@@ -16,7 +16,30 @@ projects.extend([x1,x2,x3,x4,x5,x6,x7,x8])
 
 if __name__ == '__main__':
     draw_projects_table(projects)
+
     print("Решения эффективные по принципу векторного максимина: ",end='')
-    print(*map(lambda x: x.name, getVectorMaximinOptimal(projects)), sep=",")
+    maxminOptimal = getVectorMaxminOptimal(projects)
+    setOptimal("Векторный максимин",maxminOptimal)
+    print(*map(lambda x: x.name, maxminOptimal), sep=",")
+
     print("Решения эффективные по принципу минимаксного сожаления: ",end='')
-    print(*map(lambda x: x.name, getVectorMaximinOptimal(projects)), sep=",")
+    minmaxOptimal = getVectorMinmaxOptimal(projects)
+    setOptimal("Векторное минимаксное сожаление",minmaxOptimal)
+    print(*map(lambda x: x.name, minmaxOptimal), sep=",")
+
+    optimalByF1 = getOptimalByF("f1",projects)
+    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу,Байесу и Лапласу по f1: ", end='')
+    setOptimal("f1 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа",optimalByF1)
+    print(*map(lambda x: x.name, optimalByF1), sep=",")
+
+    optimalByF2 = getOptimalByF("f2",projects)
+    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу,Байесу и Лапласу по f2: ", end='')
+    setOptimal("f2 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа",optimalByF2)
+    print(*map(lambda x: x.name, optimalByF2), sep=",")
+
+    drawVotingTable(projects)
+
+    print("Лучшие решения: ", end='')
+    print(*map(lambda x: x.name, getBest(projects)), sep=",")
+
+
