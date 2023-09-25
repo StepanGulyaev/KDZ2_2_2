@@ -13,7 +13,7 @@ def draw_projects_table(projects):
 
 def drawVotingTable(projects):
     voting_table = PrettyTable()
-    voting_table.field_names = [" ","Векторный максимин","Векторное минимаксное сожаление","f1 по критериям В,С,Г,Б и Л","f2 по критериям В,С,Г,Б и Л"]
+    voting_table.field_names = [" ","Векторный максимин","Векторное минимаксное сожаление","f1 по критериям В,С,Г и Л","f2 по критериям В,С,Г и Л"]
     for project in projects :
         row = []
         row.append(project.name)

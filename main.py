@@ -28,13 +28,13 @@ if __name__ == '__main__':
     print(*map(lambda x: x.name, minmaxOptimal), sep=",")
 
     optimalByF1 = getOptimalByF("f1",projects)
-    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу,Байесу и Лапласу по f1: ", end='')
-    setOptimal("f1 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа",optimalByF1)
+    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу и Лапласу по f1: ", end='')
+    setOptimal("f1 по критериям Вальда,Сэвиджа,Гурвица и Лапласа",optimalByF1)
     print(*map(lambda x: x.name, optimalByF1), sep=",")
 
     optimalByF2 = getOptimalByF("f2",projects)
-    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу,Байесу и Лапласу по f2: ", end='')
-    setOptimal("f2 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа",optimalByF2)
+    print("Лучшие решения по Вальду,Сэвиджу,Гурвицу и Лапласу по f2: ", end='')
+    setOptimal("f2 по критериям Вальда,Сэвиджа,Гурвица и Лапласа",optimalByF2)
     print(*map(lambda x: x.name, optimalByF2), sep=",")
 
     drawVotingTable(projects)

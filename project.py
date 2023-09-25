@@ -3,9 +3,9 @@ class Project:
         self.name = name
         self.states = states
         self.criterias = dict.fromkeys(["Векторный максимин", "Векторное минимаксное сожаление",
-                                        "f1 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа",
-                                        "f2 по критериям Вальда,Сэвиджа,Гурвица,Байеса и Лапласа"],False)
-        self.miniCriterias = dict.fromkeys(["Вальд","Сэвидж","Гурвиц","Байес","Лаплас"],False)
+                                        "f1 по критериям Вальда,Сэвиджа,Гурвица и Лапласа",
+                                        "f2 по критериям Вальда,Сэвиджа,Гурвица и Лапласа"],False)
+        self.miniCriterias = dict.fromkeys(["Вальд","Сэвидж","Гурвиц","Лаплас"],False)
 
     def getStates(self):
         return self.states

@@ -2,7 +2,6 @@ from math import *
 import copy
 
 gurvitz_coef = 0.6
-bayes_coef = [0.1, 0.4, 0.4, 0.1]
 
 def setOptimal(criteriaName : str, projects : list):
     for project in projects:
@@ -64,14 +63,9 @@ def getOptimalByF(fName : str,projects : list):
     setOptimalMiniCriteria("Гурвиц",gurvitzOptimal)
     print(*map(lambda x: x.name, gurvitzOptimal), sep=",")
 
-    print("     Байес-эффективные решения по " + fName + ": " , end='')
-    bayesOptimal = getBayesOptimal(projects_copy)
-    setOptimalMiniCriteria("Байес",bayesOptimal)
-    print(*map(lambda x: x.name, bayesOptimal), sep=",")
-
     print("     Лаплас-эффективные решения по " + fName + ": " , end='')
     laplasOptimal = getLaplasOptimal(projects_copy)
-    setOptimalMiniCriteria("Лаплас",bayesOptimal)
+    setOptimalMiniCriteria("Лаплас",laplasOptimal)
     print(*map(lambda x: x.name, laplasOptimal), sep=",")
 
     bestByMiniCriteria = getBestByMiniCriteria(projects_copy)
@@ -80,10 +74,6 @@ def getOptimalByF(fName : str,projects : list):
     filtered = list(filter(lambda x: x is not None, orig_projects))
 
     return filtered
-
-
-
-
 
 def getWaldOptimal(projects):
     mins = dict.fromkeys(projects)
@@ -116,15 +106,6 @@ def getGurvitzOptimal(projects):
         gurvitz_dict[project] = min(project.states) * gurvitz_coef + max(project.states) * (1 - gurvitz_coef)
     gurvitz_effective = [k for k, v in gurvitz_dict.items() if v == max(gurvitz_dict.values())]
     return gurvitz_effective
-
-def getBayesOptimal(projects):
-    bayes_dict = dict.fromkeys(projects)
-    for project in bayes_dict:
-        bayes_dict[project] = 0
-        for i in range(len(project.states)):
-            bayes_dict[project] += project.states[i] * bayes_coef[i]
-    bayes_effective = [k for k, v in bayes_dict.items() if v == max(bayes_dict.values())]
-    return bayes_effective
 
 def getLaplasOptimal(projects):
     laplas_dict = dict.fromkeys(projects)
