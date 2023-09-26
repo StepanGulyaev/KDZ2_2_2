@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     drawVotingTable(projects)
 
-    print("Лучшие решения: ", end='')
+    print("Лучшие решения : ", end='')
     print(*map(lambda x: x.name, getBest(projects)), sep=",")
 
 
