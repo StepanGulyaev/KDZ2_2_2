@@ -1,5 +1,6 @@
 from math import *
 import copy
+from exclude import *
 
 gurvitz_coef = 0.6
 
@@ -16,10 +17,10 @@ def getVectorMaxminOptimal(projects : list):
     for project in vectors:
          minf1 = min(map(lambda x: x[0],project.getStates()))
          minf2 = min(map(lambda x: x[1],project.getStates()))
-         vectors[project] = sqrt(minf1**2 + minf2**2)
-    maxmin = max(vectors.values())
-    vectorMaxminEffective = [k for k, v in vectors.items() if v == maxmin]
-    return vectorMaxminEffective
+         vectors[project] = [minf1,minf2]
+    pareto = getPareto(vectors)
+    return pareto
+    
 
 def getVectorMinmaxOptimal(projects : list):
     risk_matrix = copy.deepcopy(projects)

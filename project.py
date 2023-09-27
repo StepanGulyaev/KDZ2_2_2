@@ -6,6 +6,7 @@ class Project:
                                         "f1 по критериям Вальда,Сэвиджа,Гурвица и Лапласа",
                                         "f2 по критериям Вальда,Сэвиджа,Гурвица и Лапласа"],False)
         self.miniCriterias = dict.fromkeys(["Вальд","Сэвидж","Гурвиц","Лаплас"],False)
+        self.excluded = False
 
     def getStates(self):
         return self.states
@@ -29,3 +30,9 @@ class Project:
             if self.miniCriterias[criteria] == True:
                 numOfOptimalMiniCriteria+=1
         return numOfOptimalMiniCriteria
+
+    def exclude(self):
+        self.excluded = True
+
+    def include(self):
+        self.excludede = False
