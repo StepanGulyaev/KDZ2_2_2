@@ -61,8 +61,8 @@ def draw_minmax(projects : dict, pareto : dict):
     minmax.set_xlim((-2, 16))
     minmax.set_ylim((-2, 16))
 
-    plt.xlabel(r'$s1$')
-    plt.ylabel(r'$s2$')
+    plt.xlabel(r'$v1$')
+    plt.ylabel(r'$v2$')
 
     # make grid
 
