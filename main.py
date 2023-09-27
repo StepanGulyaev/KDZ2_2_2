@@ -1,5 +1,4 @@
 from project import Project
-from tables import *
 from criterias import *
 
 x1 = Project("X1",[[5,10],[2,7],[8,6],[5,9]])
@@ -42,4 +41,5 @@ if __name__ == '__main__':
     print("Лучшие решения : ", end='')
     print(*map(lambda x: x.name, getBest(projects)), sep=",")
 
+    plt.show()
 

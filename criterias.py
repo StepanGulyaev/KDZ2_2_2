@@ -1,6 +1,7 @@
 from math import *
 import copy
 from exclude import *
+from graphics import *
 
 gurvitz_coef = 0.6
 
@@ -18,9 +19,9 @@ def getVectorMaxminOptimal(projects : list):
          minf1 = min(map(lambda x: x[0],project.getStates()))
          minf2 = min(map(lambda x: x[1],project.getStates()))
          vectors[project] = [minf1,minf2]
-    pareto = getPareto(vectors)
-    return pareto
-    
+    pareto = getPareto(vectors,"findMax")
+    draw_maxmin(vectors,pareto)
+    return list(pareto)
 
 def getVectorMinmaxOptimal(projects : list):
     risk_matrix = copy.deepcopy(projects)
@@ -31,13 +32,18 @@ def getVectorMinmaxOptimal(projects : list):
             project_copy.states[i][0] = f1MaxCurState - project_copy.states[i][0]
             project_copy.states[i][1] = f2MaxCurState - project_copy.states[i][1]
     maxes = dict.fromkeys(risk_matrix)
+
     for project in maxes:
-        maxes[project] = max(map(lambda x: sqrt(x[0]**2 + x[1]**2),project.getStates()))
-    minmax = min(maxes.values())
-    minmaxEffective =  [k for k, v in maxes.items() if v == minmax]
-    names = list(map(lambda x: x.name,minmaxEffective))
-    origProjects = list(map(lambda x: x if (x.name in names) else None,projects))
-    filtered = list(filter(lambda x: x is not None,origProjects))
+        maxf1 = max(map(lambda x: x[0], project.getStates()))
+        maxf2 = max(map(lambda x: x[1], project.getStates()))
+        maxes[project] = [maxf1,maxf2]
+
+    pareto = getPareto(maxes, "findMin")
+    draw_minmax(maxes,pareto)
+
+    names = list(map(lambda x: x.name, pareto))
+    origProjects = list(map(lambda x: x if (x.name in names) else None, projects))
+    filtered = list(filter(lambda x: x is not None, origProjects))
     return filtered
 
 def getOptimalByF(fName : str,projects : list):
